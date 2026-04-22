@@ -183,8 +183,9 @@
       "bases:Créer une nouvelle base": false
     }
   },
-  "active": "277afbe424234be0",
+  "active": "6ea4c0026eb9f2e0",
   "lastOpenFiles": [
+    "tools/tokenizer-explorer.py",
     "01-fondamentaux/img/points_critiques.png",
     "01-fondamentaux/img/sys-vs-user.png",
     "01-fondamentaux/img/sampling-decodage.png",
@@ -196,7 +197,6 @@
     "01-fondamentaux/img/embeddings1.png",
     "01-fondamentaux/img/tokenization.png",
     "01-fondamentaux/llm-architecture.md",
-    "01-fondamentaux/img/vue_densemble_llm.png",
     "01-fondamentaux/idea.md"
   ]
 }
