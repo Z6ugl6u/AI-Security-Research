@@ -185,6 +185,8 @@
   },
   "active": "6ea4c0026eb9f2e0",
   "lastOpenFiles": [
+    "context-overflow-tester.py",
+    "tools/sampling-playground.py",
     "tools/tokenizer-explorer.py",
     "01-fondamentaux/img/points_critiques.png",
     "01-fondamentaux/img/sys-vs-user.png",
