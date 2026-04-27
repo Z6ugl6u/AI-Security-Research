@@ -32,10 +32,9 @@ Exemple :
 - Impact sur les attaques par obfuscation
 - Variabilité selon les tokenizers (BPE, SentencePiece, etc.)
 
-![[tokenization.png]]
+![Tokenization](./img/tokenization.png)
 
-![[embeddings2.png|555]]
-[source](https://www.researchgate.net/figure/BPE-word-segmentation-processing_fig2_398000509)
+
 
 ---
 
@@ -50,7 +49,9 @@ Chaque token est transformé en vecteur numérique dense.
 - mots similaires → vecteurs proches
 - base de la similarité sémantique
 
-![[embeddings1.png]]
+![embeddings1.png](./img/embeddings1.png)
+![embeddings2](./img/embeddings2.png)
+[source](https://www.researchgate.net/figure/BPE-word-segmentation-processing_fig2_398000509)
 
 ---
 
@@ -64,7 +65,7 @@ Chaque bloc contient :
 - Layer Normalization
 - Residual connections
 
-![[transformer.png]]
+![transformer](./img/transformer.png)
 
 ---
 
@@ -72,14 +73,15 @@ Chaque bloc contient :
 
 Mécanisme central qui permet au modèle de “pondérer” les tokens entre eux.
 
-![[formule.png]]
+![formule](./img/formule.png)
 
 ### Intuition
 
 - chaque token “regarde” les autres tokens
 - calcule une importance relative
 
-![[self-attention.png]]
+![self-attention](./img/self-attention.png)
+
 ---
 
 ## 6. Pipeline d’inférence
@@ -90,7 +92,7 @@ Prompt → Tokenization → Embedding → Transformer → Logits → Sampling �
 ```
 
 
-![[pipline_inference.png]]
+![pipline_inference](./img/pipline_inference.png)
 
 ---
 
@@ -106,7 +108,7 @@ Paramètres principaux :
 - Top-k → limite des candidats
 - Top-p (nucleus sampling) → probabilité cumulative
 
-![[sampling-decodage.png]]
+![sampling-decodage](./img/sampling-decodage.png)
 
 
 ---
@@ -125,7 +127,7 @@ System > Developer > User > Context
 - source principale des attaques prompt injection
 - conflit d’instructions exploitable
 
-![[sys-vs-user.png]]
+![sys-vs-user](./img/sys-vs-user.png)
 
 ---
 
@@ -138,7 +140,7 @@ Cette architecture explique plusieurs classes de failles :
 - Data leakage → mémorisation du training set
 - RAG poisoning → injection dans retrieval layer
 
-![[points_critiques.png]]
+![points_critiques](.img/points_critiques.png)
 
 ---
 
