@@ -1,0 +1,143 @@
+
+<style>
+  .block-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .block-label { font-size:13px; color:var(--color-text-secondary); width:130px; flex-shrink:0; }
+  .block-input { flex:1; }
+  .block-count { font-size:13px; font-weight:500; min-width:52px; text-align:right; color:var(--color-text-secondary); }
+  .seg { height:100%; display:inline-block; vertical-align:top; transition: width 0.3s ease; }
+  .bar-wrap { width:100%; height:28px; background:var(--color-background-secondary); border-radius:var(--border-radius-md); overflow:hidden; border:0.5px solid var(--color-border-tertiary); margin:12px 0 6px; }
+  .legend-dot { width:10px; height:10px; border-radius:2px; display:inline-block; flex-shrink:0; }
+  .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--color-text-secondary); }
+  .stat-val { font-size:22px; font-weight:500; color:var(--color-text-primary); }
+  .stat-lbl { font-size:12px; color:var(--color-text-secondary); margin-top:2px; }
+  .alert-box { border-radius:var(--border-radius-md); padding:10px 14px; font-size:13px; margin-top:12px; border:0.5px solid; }
+</style>
+
+<div style="padding:1rem 0 0.5rem;">
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:12px; margin-bottom:20px;">
+    <div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:12px 14px;">
+      <div class="stat-val" id="stat-used">0</div>
+      <div class="stat-lbl">tokens utilisés</div>
+    </div>
+    <div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:12px 14px;">
+      <div class="stat-val" id="stat-left">8 000</div>
+      <div class="stat-lbl">tokens restants</div>
+    </div>
+    <div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:12px 14px;">
+      <div class="stat-val" id="stat-pct">0%</div>
+      <div class="stat-lbl">fenêtre utilisée</div>
+    </div>
+  </div>
+
+  <div class="bar-wrap" id="bar">
+    <div class="seg" id="seg-sys"  style="background:#534AB7;" title="system prompt"></div>
+    <div class="seg" id="seg-usr"  style="background:#0F6E56;" title="messages user/assistant"></div>
+    <div class="seg" id="seg-rag"  style="background:#BA7517;" title="documents RAG"></div>
+    <div class="seg" id="seg-out"  style="background:#185FA5;" title="sortie générée"></div>
+    <div class="seg" id="seg-over" style="background:#A32D2D;" title="dépassement"></div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+    <div class="legend-item"><span class="legend-dot" style="background:#534AB7;"></span>System prompt</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#0F6E56;"></span>Messages user/assistant</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#BA7517;"></span>Documents RAG</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#185FA5;"></span>Sortie générée</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#A32D2D;"></span>Dépassement (tronqué)</div>
+  </div>
+
+  <div style="border-top:0.5px solid var(--color-border-tertiary); padding-top:16px; margin-bottom:16px;">
+    <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+      <span style="font-size:13px; color:var(--color-text-secondary); width:130px; flex-shrink:0;">Taille fenêtre</span>
+      <input type="range" id="window-size" min="1000" max="32000" step="1000" value="8000" style="flex:1;">
+      <span style="font-size:13px; font-weight:500; min-width:64px; text-align:right; color:var(--color-text-primary);" id="window-lbl">8 000</span>
+    </div>
+
+    <div class="block-row">
+      <span class="block-label">System prompt</span>
+      <input type="range" class="block-input" id="sl-sys" min="0" max="2000" step="50" value="300" oninput="update()">
+      <span class="block-count" id="lbl-sys">300 tok</span>
+    </div>
+    <div class="block-row">
+      <span class="block-label">Messages user/asst</span>
+      <input type="range" class="block-input" id="sl-usr" min="0" max="8000" step="100" value="1500" oninput="update()">
+      <span class="block-count" id="lbl-usr">1 500 tok</span>
+    </div>
+    <div class="block-row">
+      <span class="block-label">Documents RAG</span>
+      <input type="range" class="block-input" id="sl-rag" min="0" max="8000" step="100" value="2000" oninput="update()">
+      <span class="block-count" id="lbl-rag">2 000 tok</span>
+    </div>
+    <div class="block-row">
+      <span class="block-label">Sortie générée</span>
+      <input type="range" class="block-input" id="sl-out" min="0" max="4000" step="50" value="500" oninput="update()">
+      <span class="block-count" id="lbl-out">500 tok</span>
+    </div>
+  </div>
+
+  <div id="alert-zone"></div>
+</div>
+
+<script>
+  function fmt(n) { return n.toLocaleString('fr-FR'); }
+
+  function update() {
+    var win = parseInt(document.getElementById('window-size').value);
+    var sys = parseInt(document.getElementById('sl-sys').value);
+    var usr = parseInt(document.getElementById('sl-usr').value);
+    var rag = parseInt(document.getElementById('sl-rag').value);
+    var out = parseInt(document.getElementById('sl-out').value);
+
+    document.getElementById('window-lbl').textContent = fmt(win);
+    document.getElementById('lbl-sys').textContent = fmt(sys) + ' tok';
+    document.getElementById('lbl-usr').textContent = fmt(usr) + ' tok';
+    document.getElementById('lbl-rag').textContent = fmt(rag) + ' tok';
+    document.getElementById('lbl-out').textContent = fmt(out) + ' tok';
+
+    var total = sys + usr + rag + out;
+    var over  = Math.max(0, total - win);
+    var used  = Math.min(total, win);
+    var left  = Math.max(0, win - total);
+    var pct   = Math.min(100, Math.round(total / win * 100));
+
+    document.getElementById('stat-used').textContent = fmt(total);
+    document.getElementById('stat-left').textContent = fmt(left);
+    document.getElementById('stat-pct').textContent  = pct + '%';
+
+    var base = Math.max(total, win);
+    function w(v) { return (v / base * 100).toFixed(2) + '%'; }
+
+    var usable_sys = Math.min(sys, win);
+    var usable_usr = Math.min(usr, Math.max(0, win - sys));
+    var usable_rag = Math.min(rag, Math.max(0, win - sys - usr));
+    var usable_out = Math.min(out, Math.max(0, win - sys - usr - rag));
+
+    document.getElementById('seg-sys').style.width  = w(usable_sys);
+    document.getElementById('seg-usr').style.width  = w(usable_usr);
+    document.getElementById('seg-rag').style.width  = w(usable_rag);
+    document.getElementById('seg-out').style.width  = w(usable_out);
+    document.getElementById('seg-over').style.width = w(over);
+
+    var z = document.getElementById('alert-zone');
+    if (over > 0) {
+      var lostPct = Math.round(over / total * 100);
+      z.innerHTML = '<div class="alert-box" style="background:var(--color-background-danger);border-color:var(--color-border-danger);color:var(--color-text-danger);">'
+        + '<strong>Dépassement : ' + fmt(over) + ' tokens tronqués (' + lostPct + '% du contenu perdu)</strong><br>'
+        + 'Le modèle ne voit plus les ' + fmt(over) + ' tokens les plus anciens. '
+        + 'En pratique : oubli des premières instructions, contradictions, perte du system prompt si la fenêtre est très saturée.'
+        + '</div>';
+    } else if (pct >= 80) {
+      z.innerHTML = '<div class="alert-box" style="background:var(--color-background-warning);border-color:var(--color-border-warning);color:var(--color-text-warning);">'
+        + '<strong>Attention : fenêtre à ' + pct + '%</strong><br>'
+        + 'Proche de la limite. Quelques messages supplémentaires et la troncature commence.'
+        + '</div>';
+    } else {
+      z.innerHTML = '<div class="alert-box" style="background:var(--color-background-success);border-color:var(--color-border-success);color:var(--color-text-success);">'
+        + 'Fenêtre saine — ' + fmt(left) + ' tokens disponibles (' + (100 - pct) + '% libre).'
+        + '</div>';
+    }
+  }
+
+  document.getElementById('window-size').addEventListener('input', update);
+  update();
+</script>
