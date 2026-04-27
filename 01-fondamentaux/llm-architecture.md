@@ -73,7 +73,7 @@ Chaque bloc contient :
 
 Mécanisme central qui permet au modèle de “pondérer” les tokens entre eux.
 
-![formule](./img/formule.png)
+![formule attention](./img/formule_attention.png)
 
 ### Intuition
 

@@ -243,3 +243,7 @@ Fonctionne avec :
 Prochain fichier :
 
 👉 `context-window.md`
+
+
+
+AJOUTER L4IMAGE DE LA FORMULEEE
