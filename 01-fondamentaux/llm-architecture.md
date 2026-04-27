@@ -10,7 +10,7 @@ Texte → Tokenizer → Embeddings → Transformer stack → Logits → Sampling
 ```
 
 
-![Sampling](./img/vue_densemble_llm.png)
+![Sampling](./Architecture-&-Fonctionnement/img/vue_densemble_llm.png)
 
 *Schéma simple pipeline LLM montrant texte entrant, tokenizer, embeddings, blocs transformer empilés, couche logits, softmax, sortie texte, style diagramme technique propre*
 
@@ -32,7 +32,7 @@ Exemple :
 - Impact sur les attaques par obfuscation
 - Variabilité selon les tokenizers (BPE, SentencePiece, etc.)
 
-![Tokenization](./img/tokenization.png)
+![Tokenization](./Architecture-&-Fonctionnement/img/tokenization.png)
 
 
 
@@ -48,9 +48,8 @@ Chaque token est transformé en vecteur numérique dense.
 
 - mots similaires → vecteurs proches
 - base de la similarité sémantique
-
-![embeddings1.png](./img/embeddings1.png)
-![embeddings2](./img/embeddings2.png)
+![embeddings1.png](./Architecture-&-Fonctionnement/img/embeddings1.png)
+![embeddings2](./Architecture-&-Fonctionnement/img/embeddings2.png)
 [source](https://www.researchgate.net/figure/BPE-word-segmentation-processing_fig2_398000509)
 
 ---
@@ -65,7 +64,7 @@ Chaque bloc contient :
 - Layer Normalization
 - Residual connections
 
-![transformer](./img/transformer.png)
+![transformer](./Architecture-&-Fonctionnement/img/transformer.png)
 
 ---
 
@@ -73,14 +72,14 @@ Chaque bloc contient :
 
 Mécanisme central qui permet au modèle de “pondérer” les tokens entre eux.
 
-![formule attention](./img/formule_attention.png)
+![formule attention](./Architecture-&-Fonctionnement/img/formule_attention.png)
 
 ### Intuition
 
 - chaque token “regarde” les autres tokens
 - calcule une importance relative
 
-![self-attention](./img/self-attention.png)
+![self-attention](./Architecture-&-Fonctionnement/img/self-attention.png)
 
 ---
 
@@ -92,7 +91,7 @@ Prompt → Tokenization → Embedding → Transformer → Logits → Sampling �
 ```
 
 
-![pipline_inference](./img/pipline_inference.png)
+![pipline_inference](./Architecture-&-Fonctionnement/img/pipline_inference.png)
 
 ---
 
@@ -108,7 +107,7 @@ Paramètres principaux :
 - Top-k → limite des candidats
 - Top-p (nucleus sampling) → probabilité cumulative
 
-![sampling-decodage](./img/sampling-decodage.png)
+![sampling-decodage](./Architecture-&-Fonctionnement/img/sampling-decodage.png)
 
 
 ---
@@ -127,7 +126,7 @@ System > Developer > User > Context
 - source principale des attaques prompt injection
 - conflit d’instructions exploitable
 
-![sys-vs-user](./img/sys-vs-user.png)
+![sys-vs-user](./Architecture-&-Fonctionnement/img/sys-vs-user.png)
 
 ---
 
@@ -140,7 +139,7 @@ Cette architecture explique plusieurs classes de failles :
 - Data leakage → mémorisation du training set
 - RAG poisoning → injection dans retrieval layer
 
-![points_critiques](./img/points_critiques.png)
+![points_critiques](./Architecture-&-Fonctionnement/img/points_critiques.png)
 
 ---
 
