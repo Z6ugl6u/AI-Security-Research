@@ -9,7 +9,8 @@ Flux global :
 Texte → Tokenizer → Embeddings → Transformer stack → Logits → Sampling → Token suivant
 ```
 
-![[01-fondamentaux/img/vue_densemble_llm.png]]
+
+![Sampling](./01-fondamentaux/img/vue_densemble_llm.png)
 
 *Schéma simple pipeline LLM montrant texte entrant, tokenizer, embeddings, blocs transformer empilés, couche logits, softmax, sortie texte, style diagramme technique propre*
 
