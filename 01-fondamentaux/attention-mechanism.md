@@ -40,18 +40,7 @@ Pour un token donné :
 
 ## 4. Formule
 
-Attention(Q,K,V)=softmax(
-d
-k
-	​
-
-	​
-
-QK
-T
-	​
-
-)V
+![formule attention](./img/formule_attention.png)
 
 **Interprétation :**
 - QK^T → similarité entre tokens
@@ -243,7 +232,3 @@ Fonctionne avec :
 Prochain fichier :
 
 👉 `context-window.md`
-
-
-
-AJOUTER L4IMAGE DE LA FORMULEEE
