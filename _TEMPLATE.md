@@ -15,7 +15,7 @@ Exemple :
 
 <Input> → <Transformation> → <Output>
 
-````
+```
 
 ---
 
@@ -47,7 +47,7 @@ Exemple :
 
 ```text
 <Input réel>
-````
+```
 
 Résultat :
 
@@ -99,8 +99,13 @@ Résultat :
 
 ---
 
+## 10. A retenir
+
+- tiret 1
+- tiret 2
+- tiret 3
+
 ## 11. Références
 
 * Source 1
 * Source 2
-
