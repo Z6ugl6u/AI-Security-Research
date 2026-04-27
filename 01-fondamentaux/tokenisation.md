@@ -62,7 +62,9 @@ Cas intéressant :
 BPE est une compression adaptée au langage.
 
 **1.** Départ : caractères
+
 **2.** Fusion des paires fréquentes
+
 **3.** Construction progressive du vocabulaire
 
 Ex simplifié :
