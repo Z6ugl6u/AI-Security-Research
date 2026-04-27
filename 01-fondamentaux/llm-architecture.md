@@ -140,7 +140,7 @@ Cette architecture explique plusieurs classes de failles :
 - Data leakage → mémorisation du training set
 - RAG poisoning → injection dans retrieval layer
 
-![points_critiques](.img/points_critiques.png)
+![points_critiques](./img/points_critiques.png)
 
 ---
 
