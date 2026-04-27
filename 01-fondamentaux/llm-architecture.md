@@ -48,6 +48,7 @@ Chaque token est transformé en vecteur numérique dense.
 
 - mots similaires → vecteurs proches
 - base de la similarité sémantique
+
 ![embeddings1.png](./Architecture-&-Fonctionnement/img/embeddings1.png)
 ![embeddings2](./Architecture-&-Fonctionnement/img/embeddings2.png)
 [source](https://www.researchgate.net/figure/BPE-word-segmentation-processing_fig2_398000509)
