@@ -234,10 +234,10 @@ Le modèle a appris que cette réponse reçoit un meilleur score humain.
 
 ## 8. Lien avec d’autres concepts
 
-* → `pretraining-vs-finetuning.md`
-* → `constitutional-ai.md`
+* → `02-pretraining-vs-finetuning.md`
+* → `04-constitutional-ai.md`
 * → `alignment-problem.md`
-* → `system-prompt-vs-user-prompt.md`
+* → `06-system-prompt-vs-user-prompt.md`
 * → `jailbreaking.md`
 * → `prompt-injection.md`
 

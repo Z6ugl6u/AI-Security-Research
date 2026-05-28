@@ -159,9 +159,9 @@ Cette architecture explique plusieurs classes de failles :
 
 ## 11. Lien vers autres chapitres
 
-- `tokenization.md` → attaques sur tokens
-- `attention-mechanism.md` → compréhension profonde du focus contextuel
-- `context-window.md` → limites exploitables
+- `02-tokenisation.md` → attaques sur tokens
+- `03-attention-mechanism.md` → compréhension profonde du focus contextuel
+- `04-context-window.md` → limites exploitables
 - `rag-architecture.md` → injection via retrieval
 
 ---

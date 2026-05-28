@@ -201,11 +201,11 @@ Visit https://example.com for more info
 
 ## 8. Lien avec d'autres concepts
 
-* → `pretraining-vs-finetuning.md` — pipeline utilisé différemment en pretraining vs finetuning
+* → `02-pretraining-vs-finetuning.md` — pipeline utilisé différemment en pretraining vs finetuning
 * → `memorization-and-leakage.md` — données d'entraînement peuvent fuiter via outputs
 * → `alignment-problem.md` — données biaisées → modèle moins aligné
-* → `rlhf.md` — données labellisées humaines pour RLHF
-* → `tokenisation.md` — dernière étape du pipeline
+* → `03-rlhf.md` — données labellisées humaines pour RLHF
+* → `02-tokenisation.md` — dernière étape du pipeline
 
 ---
 

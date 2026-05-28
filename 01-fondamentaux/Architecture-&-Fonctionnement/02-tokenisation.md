@@ -274,6 +274,6 @@ Permet de :
 
 La prochaine étape :
 
-👉 `attention-mechanism.md`
+👉 `03-attention-mechanism.md`
 
 (comprendre comment le modèle relie les tokens entre eux)

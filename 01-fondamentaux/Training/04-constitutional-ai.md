@@ -228,10 +228,10 @@ Le modèle :
 
 ## 8. Lien avec d’autres concepts
 
-* → `rlhf.md`
-* → `pretraining-vs-finetuning.md`
+* → `03-rlhf.md`
+* → `02-pretraining-vs-finetuning.md`
 * → `alignment-problem.md`
-* → `system-prompt-vs-user-prompt.md`
+* → `06-system-prompt-vs-user-prompt.md`
 * → `jailbreaking.md`
 * → `prompt-injection.md`
 * → `capabilities-vs-safety.md`

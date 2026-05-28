@@ -293,9 +293,9 @@ Je ne peux pas aider à compromettre un système.
 
 ## 8. Lien avec d’autres concepts
 
-* → `training-data-pipeline.md`
-* → `rlhf.md`
-* → `constitutional-ai.md`
+* → `01-training-data-pipeline.md`
+* → `03-rlhf.md`
+* → `04-constitutional-ai.md`
 * → `memorization-and-leakage.md`
 * → `alignment-problem.md`
 * → `open-source-vs-closed-models.md`
